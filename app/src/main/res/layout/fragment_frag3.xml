@@ -7,11 +7,10 @@
 
 
     <TextView
-        android:id="@+id/textView"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GPS"
+        android:text="GPS Google API"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="25sp"
         android:layout_gravity="center_horizontal"
@@ -41,7 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText4"
+                android:id="@+id/editTextLat"
                 android:editable="false"
                 android:focusable="false"
                 android:layout_gravity="center_horizontal" />
@@ -65,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText5"
+                android:id="@+id/editTextLong"
                 android:editable="false"
                 android:focusable="false"
                 android:layout_gravity="center_horizontal" />
@@ -89,21 +88,67 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText6"
+                android:id="@+id/editTextSpeed"
                 android:editable="false"
                 android:focusable="false"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="10dp"
+                android:text="Update"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextDate"
+                android:editable="false"
+                android:focusable="false"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/buttonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Iniciar Sensor"
+                android:layout_marginBottom="156dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp" />
+
+            <Button
+                android:id="@+id/buttonStop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detener Sensor"
+                android:layout_marginBottom="156dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp" />
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonGps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Iniciar Sensor"
-        android:layout_marginBottom="156dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="20dp" />
+
 
 </LinearLayout>

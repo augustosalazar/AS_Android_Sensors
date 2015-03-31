@@ -22,14 +22,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         if (position  == 0)
             return Frag1.newInstance(position + 1);
-        else
+        else if (position  == 1)
             return Frag2.newInstance(position + 1);
+        else return Frag3.newInstance(position + 1);
     }
 
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 2;
+        return 3;
     }
 
     @Override
@@ -41,6 +42,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return res.getString(R.string.title_section1).toUpperCase(l);
             case 1:
                 return res.getString(R.string.title_section2).toUpperCase(l);
+            case 3:
+                return res.getString(R.string.title_section3).toUpperCase(l);
         }
         return null;
     }
