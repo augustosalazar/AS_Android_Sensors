@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -60,7 +60,7 @@ public class Frag3 extends Fragment implements
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_frag3, container, false);
 
-
+        Log.d("AndroidSensors", "Frag3");
         mStartUpdatesButton = (Button) view.findViewById(R.id.buttonStart);
         mStopUpdatesButton = (Button) view.findViewById(R.id.buttonStop);
         mLatitudeTextView = (TextView) view.findViewById(R.id.editTextLat);
@@ -95,7 +95,7 @@ public class Frag3 extends Fragment implements
     public void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
-        Toast.makeText(getActivity(),"Connecting", Toast.LENGTH_SHORT).show();
+        Log.d("AndroidSensors","Connecting");
 
     }
 
@@ -125,7 +125,7 @@ public class Frag3 extends Fragment implements
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(getActivity(),"onConnected", Toast.LENGTH_SHORT).show();
+        Log.d("AndroidSensors", "onConnected");
         if (mCurrentLocation == null) {
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
@@ -148,8 +148,7 @@ public class Frag3 extends Fragment implements
         mCurrentLocation = location;
         mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
         updateUI();
-        Toast.makeText(getActivity(),"onLocationChanged",
-                Toast.LENGTH_SHORT).show();
+        Log.d("AndroidSensors", "onLocationChanged");
     }
 
     @Override
@@ -168,10 +167,16 @@ public class Frag3 extends Fragment implements
 
     protected void startLocationUpdates() {
         if (!mGoogleApiClient.isConnected()) {
+            Log.d("AndroidSensors", "startLocationUpdates not connected");
             mGoogleApiClient.connect();
+            mRequestingLocationUpdates = false;
+            setButtonsEnabledState();
+        } else {
+            Log.d("AndroidSensors","startLocationUpdates connected");
+            LocationServices.FusedLocationApi.requestLocationUpdates(
+                    mGoogleApiClient, mLocationRequest, this);
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, this);
+
     }
 
     protected void stopLocationUpdates() {
@@ -219,7 +224,7 @@ public class Frag3 extends Fragment implements
                 .addApi(LocationServices.API)
                 .build();
         createLocationRequest();
-        Toast.makeText(getActivity(),"buildGoogleApiClient", Toast.LENGTH_SHORT).show();
+        Log.d("AndroidSensors", "buildGoogleApiClient");
     }
 
 }

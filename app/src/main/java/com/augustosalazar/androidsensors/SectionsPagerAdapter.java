@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import java.util.Locale;
 
@@ -19,12 +20,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-
-        if (position  == 0)
+        Log.d("AndroidSensors", "getItem " + position);
+        if (position == 0) {
             return Frag1.newInstance(position + 1);
-        else if (position  == 1)
+        } else if (position == 1) {
             return Frag2.newInstance(position + 1);
-        else return Frag3.newInstance(position + 1);
+        } else {
+            return Frag3.newInstance(position + 1);
+        }
     }
 
     @Override

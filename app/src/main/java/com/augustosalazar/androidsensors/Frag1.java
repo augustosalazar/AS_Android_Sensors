@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class Frag1 extends Fragment implements SensorEventListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_frag1, container, false);
 
+        Log.d("AndroidSensors", "Frag1");
         mEditTextX = (EditText) rootView.findViewById(R.id.editText);
         mEditTextY = (EditText) rootView.findViewById(R.id.editText1);
         mEditTextZ = (EditText) rootView.findViewById(R.id.editText2);
@@ -92,7 +94,7 @@ public class Frag1 extends Fragment implements SensorEventListener {
                 context.SENSOR_SERVICE);
 
         mAcelSensor = mSensorManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+                .getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
         mSensorManager.registerListener(this, mAcelSensor,
                 SensorManager.SENSOR_DELAY_NORMAL);
@@ -103,10 +105,8 @@ public class Frag1 extends Fragment implements SensorEventListener {
         mButton.setText("Iniciar Sensor");
         if (mSensorManager != null) {
             mSensorManager.unregisterListener(this, mAcelSensor);
-        } else {
-            Toast.makeText(getActivity().getApplicationContext(),
-                    "mSensorManager null", Toast.LENGTH_LONG).show();
         }
+
     }
 
     @Override

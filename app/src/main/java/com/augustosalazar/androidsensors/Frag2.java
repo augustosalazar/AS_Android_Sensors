@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,7 @@ public class Frag2 extends Fragment implements LocationListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_frag2, container, false);
-
+        Log.d("AndroidSensors", "Frag2");
         mEditTextLat = (EditText) rootView.findViewById(R.id.editText4);
         mEditTextLong = (EditText) rootView.findViewById(R.id.editText5);
         mEditTextSpeed = (EditText) rootView.findViewById(R.id.editText6);
