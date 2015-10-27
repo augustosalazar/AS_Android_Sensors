@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -153,7 +155,9 @@ public class Frag3 extends Fragment implements
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.i(this.getClass().getSimpleName(), "Connection failed: ConnectionResult.getErrorCode() = " + connectionResult.getErrorCode());
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        Log.i("AndroidSensors", "Connection failed: ConnectionResult.getErrorCode() = " + connectionResult.getErrorCode());
+        Toast.makeText(getActivity(), "Connection failed, err "+connectionResult.getErrorCode(),Toast.LENGTH_SHORT).show();
     }
 
     private void updateUI() {
