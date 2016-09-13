@@ -1,8 +1,11 @@
 package com.augustosalazar.androidsensors;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +48,8 @@ public class Frag3 extends Fragment implements
     protected TextView mLongitudeTextView;
     protected TextView mSpeedTextView;
 
+    private final int MY_PERMISSIONS_REQUEST = 1;
+
     protected String mLastUpdateTime;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -73,6 +78,14 @@ public class Frag3 extends Fragment implements
         mStartUpdatesButton.setOnClickListener(new View.OnClickListener() {
                                                    @Override
                                                    public void onClick(View v) {
+
+                                                       if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                                           ActivityCompat.requestPermissions(getActivity(),
+                                                                   new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                                                                   MY_PERMISSIONS_REQUEST);
+                                                           return;
+                                                       }
+
                                                        startUpdatesButtonHandler();
                                                    }
                                                });
@@ -229,6 +242,28 @@ public class Frag3 extends Fragment implements
                 .build();
         createLocationRequest();
         Log.d("AndroidSensors", "buildGoogleApiClient");
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Toast.makeText(getActivity(),"Perfecto, volver a internar",Toast.LENGTH_LONG).show();
+
+
+                } else {
+
+                    Toast.makeText(getActivity(),"???",Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+
+        }
     }
 
 }
